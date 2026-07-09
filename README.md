@@ -115,3 +115,14 @@ Before updating this workspace, let me know how you would like to proceed by cho
 * I can provide a **complete Python code boilerplate using PyTorch** demonstrating how to write an automated script that calculates a continuous Mahalanobis distance feature centroid lookup loop.
 * I can generate a **Markdown matrix table** tracking the default temperature thresholds, energy caps, and false-positive boundaries used by leading foundational safety modules [INDEX: 11].
 * I can write a detailed technical explanation focusing on **how to leverage open-vocabulary CLIP contrastive embeddings as a zero-shot OOD steering function** inside runtime agent architectures [INDEX: 10, 12].
+
+##  Star History
+<div align="center">
+<a href="https://www.star-history.com/?repos=ishandutta2007/Awesome-Out-Of-Distribution-Detection&type=date&legend=bottom-right">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Out-Of-Distribution-Detection&type=date&theme=dark&legend=bottom-right" />
+<source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Out-Of-Distribution-Detection&type=date&legend=bottom-right" />
+<img alt="Star History Chart" src="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Out-Of-Distribution-Detection&type=date&legend=bottom-right" />
+</picture>
+</a>
+</div>
