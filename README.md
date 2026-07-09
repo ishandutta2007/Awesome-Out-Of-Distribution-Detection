@@ -1,5 +1,8 @@
-# Awesome-Out-Of-Distribution-Detection
-## Out-of-Distribution (OOD) Detection in AI: History, Progression, Variants, & Applications
+<div align="center">
+  <img src="assets/banner.svg" alt="Awesome Out-Of-Distribution Detection Banner" />
+  <h1>🌟 Awesome-Out-Of-Distribution-Detection</h1>
+</div>
+## 🚀 Out-of-Distribution (OOD) Detection in AI: History, Progression, Variants, & Applications
 
 **Out-of-Distribution (OOD) Detection** is a foundational safety-critical diagnostic and regularization paradigm in artificial intelligence designed to identify when a machine learning model is exposed to test-time inputs that deviate significantly from the distribution of its training data (the **In-Distribution** or ID data) [INDEX: 11, 16]. Standard deep neural networks suffer from a severe structural flaw known as the **Overconfidence Trap**: when exposed to entirely novel, un-indexed anomalies, or out-of-vocabulary anomalies, their final Softmax heads continue to emit maximum-probability confidence scores, confidently hallucinating incorrect predictions [INDEX: 11, 16].
 
@@ -7,7 +10,7 @@ OOD detection resolves this systemic blind spot. By calculating mathematical den
 
 ---
 
-## 1. The Macro Chronological Evolution
+## 🕰️ 1. The Macro Chronological Evolution
 
 The technical framework governing anomalies isolation has transitioned from superficial baseline Softmax confidence checks to post-hoc logit scaling, generative boundary modeling, and modern overcomplete dictionary concept tracking.
 
@@ -27,7 +30,7 @@ flowchart LR
 
 ---
 
-## 2. Core Functional & Algorithmic OOD Variants
+## 🧠 2. Core Functional & Algorithmic OOD Variants
 
 OOD Detection frameworks are strictly categorized based on the specific computing layers they analyze and the operational availability of target anomaly samples during training [INDEX: 16].
 
@@ -40,7 +43,7 @@ OOD Detection frameworks are strictly categorized based on the specific computin
 
 ---
 
-## 3. The Energy-Based OOD Inference Pipeline
+## ⚡ 3. The Energy-Based OOD Inference Pipeline
 
 To screen incoming anomalies smoothly without triggering execution latencies, the serving infrastructure evaluates logit-space energy bounds natively inside GPU memory registers.
 
@@ -64,7 +67,7 @@ flowchart TB
 
 ---
 
-## 4. Production Engineering Challenges & Cluster Solutions
+## ⚙️ 4. Production Engineering Challenges & Cluster Solutions
 
 Deploying large-scale OOD detection checks across high-volume commercial cloud infrastructure networks introduces intense performance and precision trade-offs.
 
@@ -75,7 +78,7 @@ Deploying large-scale OOD detection checks across high-volume commercial cloud i
 
 ---
 
-## 5. Frontier Real-World AI Industrial Applications
+## 🏭 5. Frontier Real-World AI Industrial Applications
 
 | Application | Description | Year First Used | Paper Link | Detailed Page |
 |---|---|---|---|---|
@@ -85,7 +88,7 @@ Deploying large-scale OOD detection checks across high-volume commercial cloud i
 
 ---
 
-## References
+## 📚 References
 1. Hendrycks, D., & Gimpel, K. (2017). A baseline for detecting misclassified and out-of-distribution examples in neural networks. *International Conference on Learning Representations (ICLR)*.
 2. Liang, S., et al. (2018). Enhancing the reliability of out-of-distribution image detection in neural networks (ODIN). *International Conference on Learning Representations (ICLR)*.
 3. Hendrycks, D., Mazeika, D., & Dietterich, T. (2018). Deep anomaly detection with outlier exposure. *International Conference on Learning Representations (ICLR)*.
