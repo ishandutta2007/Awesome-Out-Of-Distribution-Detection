@@ -13,7 +13,10 @@ The technical framework governing anomalies isolation has transitioned from supe
 
 
 ```mermaid
-[Maximum Softmax Probability (MSP, 2017)] ───> [Post-Hoc Energy Scaling (2020)] ───> [Generative Boundary Modeling (PixelCNN)] ───> [Monosemantic Concept Auditing (Present)](Fragile Vulnerability to High-OOD Noise)      (Logit-Space Thermodynamic Realignment)       (Deep Latent Space Density Estimation)        (Sparse Autoencoder Feature Clamping)
+flowchart LR
+    A["Maximum Softmax Probability (MSP, 2017)<br/>(Fragile Vulnerability to High-OOD Noise)"] --> B["Post-Hoc Energy Scaling (2020)<br/>(Logit-Space Thermodynamic Realignment)"]
+    B --> C["Generative Boundary Modeling (PixelCNN)<br/>(Deep Latent Space Density Estimation)"]
+    C --> D["Monosemantic Concept Auditing (Present)<br/>(Sparse Autoencoder Feature Clamping)"]
 ```
 
 
@@ -60,7 +63,16 @@ To screen incoming anomalies smoothly without triggering execution latencies, th
 
 
 ```mermaid
-The Energy-Based OOD Diagnostic Pipeline[Incoming Test Input Vector x] ───> [Frozen Deep Neural Backbone] ───> [Extract Raw Logit Matrix f_i(x)]│▼[Route to Downstream Tasks] <─── [Verify Safe Energy Bounds] <─── [Compute Continuous Energy Score E(x)]│▼ (Energy Crosses Threshold Boundary)[Flag Out-of-Distribution Anomaly Enclave]
+---
+title: The Energy-Based OOD Diagnostic Pipeline
+---
+flowchart TB
+    A["Incoming Test Input Vector x"] --> B["Frozen Deep Neural Backbone"]
+    B --> C["Extract Raw Logit Matrix f_i(x)"]
+    C --> D["Compute Continuous Energy Score E(x)"]
+    D --> E["Verify Safe Energy Bounds"]
+    E --> F["Route to Downstream Tasks"]
+    E -- "Energy Crosses Threshold Boundary" --> G["Flag Out-of-Distribution Anomaly Enclave"]
 ```
 
 
