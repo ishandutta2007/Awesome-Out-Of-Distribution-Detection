@@ -18,12 +18,12 @@ flowchart LR
     C --> D["Monosemantic Concept Auditing (Present)<br/>(Sparse Autoencoder Feature Clamping)"]
 ```
 
-| Era | Concept & Limitation/Significance | Year First Used | Paper Link |
-|---|---|---|---|
-| **The Baseline Softmax Probability Era** (MSP Baseline) | *Concept:* Discovered that even though deep classifiers emit high confidence over anomalies, their MSP scores for true ID data remain statistically higher than OOD inputs.<br>*Limitation:* Highly fragile due to structural network noise. | 2017 | [Hendrycks & Gimpel (2017)](#references) |
-| **The Post-Hoc Logit & Energy Scaling Era** (ODIN / Energy-Based) | *Concept:* Shifted safety evaluation straight into raw logit parameters (temperature scaling, energy score).<br>*Significance:* Bypassed Softmax distortions, compressing OOD false-positive rates precisely. | 2018 | [Liang et al. (2018)](#references) |
-| **The Generative Density Estimation Era** | *Concept:* Approached OOD detection as explicit unsupervised density task (Normalizing Flows, PixelCNNs).<br>*Limitation:* The Likelihood Paradox, requiring complex likelihood-ratio corrections. | 2021 | [Yang et al. (2021)](#references) |
-| **The Monosemantic Feature Dictionary & VLM Era** | *Concept:* Mechanistic Interpretability Auditing layered over Sparse Autoencoders (SAEs).<br>*Significance:* OOD anomalies are flagged instantly if anomalous feature combinations trigger. | 2023 | [Bricken et al. (2023)](#references) |
+| Era | Concept & Limitation/Significance | Year First Used | Paper Link | Detailed Page |
+|---|---|---|---|---|
+| **The Baseline Softmax Probability Era** (MSP Baseline) | *Concept:* Discovered that even though deep classifiers emit high confidence over anomalies, their MSP scores for true ID data remain statistically higher than OOD inputs.<br>*Limitation:* Highly fragile due to structural network noise. | 2017 | [Hendrycks & Gimpel (2017)](#references) | [Details](details/autonomous_driving.md) | [Details](details/msp_baseline.md) |
+| **The Post-Hoc Logit & Energy Scaling Era** (ODIN / Energy-Based) | *Concept:* Shifted safety evaluation straight into raw logit parameters (temperature scaling, energy score).<br>*Significance:* Bypassed Softmax distortions, compressing OOD false-positive rates precisely. | 2018 | [Liang et al. (2018)](#references) | [Details](details/temperature_scaling.md) | [Details](details/post_hoc_logit.md) |
+| **The Generative Density Estimation Era** | *Concept:* Approached OOD detection as explicit unsupervised density task (Normalizing Flows, PixelCNNs).<br>*Limitation:* The Likelihood Paradox, requiring complex likelihood-ratio corrections. | 2021 | [Yang et al. (2021)](#references) | [Details](details/self_supervised_multimodal.md) | [Details](details/generative_density.md) |
+| **The Monosemantic Feature Dictionary & VLM Era** | *Concept:* Mechanistic Interpretability Auditing layered over Sparse Autoencoders (SAEs).<br>*Significance:* OOD anomalies are flagged instantly if anomalous feature combinations trigger. | 2023 | [Bricken et al. (2023)](#references) | [Details](details/false_positive_capacity_drain.md) | [Details](details/monosemantic_vlm.md) |
 
 ---
 
@@ -31,12 +31,12 @@ flowchart LR
 
 OOD Detection frameworks are strictly categorized based on the specific computing layers they analyze and the operational availability of target anomaly samples during training [INDEX: 16].
 
-| Variant | Mechanism | Year First Used | Paper Link |
-|---|---|---|---|
-| **A. Post-Hoc Score Discrimination** (Model-Free Refitting) | Ingests a fully trained, frozen classification model. Computes alternative mathematical indicators (Energy Score, Mahalanobis distance) right before Softmax. | 2020 | [Liu et al. (2020)](#references) |
-| **B. Outlier Exposure** (Adversarial Data-Centric OOD) | Integrates anomaly regularization directly into the training loop, forcing model to read a massive auxiliary dataset to penalize high-confidence predictions on outliers. | 2018 | [Hendrycks et al. (2018)](#references) |
-| **C. Self-Supervised Multi-Modal Anomaly Detection** | Exploits high-capacity joint-embedding models (CLIP/SigLIP). Checks for Cosine Similarity Deviations against broad class text strings to isolate outliers zero-shot. | 2021 | [Yang et al. (2021)](#references) |
-| **D. Test-Time Compute Reasoning Auditing** | Deployed inside advanced reasoning models. Policy network analyzes intermediate validation logic chains; if contradictions appear, it flags as an OOD anomaly. | 2024 | N/A |
+| Variant | Mechanism | Year First Used | Paper Link | Detailed Page |
+|---|---|---|---|---|
+| **A. Post-Hoc Score Discrimination** (Model-Free Refitting) | Ingests a fully trained, frozen classification model. Computes alternative mathematical indicators (Energy Score, Mahalanobis distance) right before Softmax. | 2020 | [Liu et al. (2020)](#references) | [Details](details/latency_overhead_wall.md) | [Details](details/post_hoc_score_discrimination.md) |
+| **B. Outlier Exposure** (Adversarial Data-Centric OOD) | Integrates anomaly regularization directly into the training loop, forcing model to read a massive auxiliary dataset to penalize high-confidence predictions on outliers. | 2018 | [Hendrycks et al. (2018)](#references) | [Details](details/outlier_exposure.md) |
+| **C. Self-Supervised Multi-Modal Anomaly Detection** | Exploits high-capacity joint-embedding models (CLIP/SigLIP). Checks for Cosine Similarity Deviations against broad class text strings to isolate outliers zero-shot. | 2021 | [Yang et al. (2021)](#references) | [Details](details/self_supervised_multimodal.md) |
+| **D. Test-Time Compute Reasoning Auditing** | Deployed inside advanced reasoning models. Policy network analyzes intermediate validation logic chains; if contradictions appear, it flags as an OOD anomaly. | 2024 | N/A | [Details](details/enterprise_fraud.md) | [Details](details/clinical_pathology.md) | [Details](details/mahalanobis_centroids.md) | [Details](details/test_time_compute.md) |
 
 ---
 
@@ -57,10 +57,10 @@ flowchart TB
     E -- "Energy Crosses Threshold Boundary" --> G["Flag Out-of-Distribution Anomaly Enclave"]
 ```
 
-| Component | Profile | Year First Used | Paper Link |
-|---|---|---|---|
-| **Temperature Scaling Blocks ($T$)** | Flattens probability distortions. Incorporating a high-temperature constant stretches the feature distributions, amplifying contrast between ID boundaries and anomalous noise. | 2018 | [Liang et al. (2018)](#references) |
-| **Mahalanobis Covariance Centroids** | High-dimensional distance tracking. Caches exact mean vectors and covariance matrices of inner hidden representations to spot structural feature drift. | 2018 | N/A |
+| Component | Profile | Year First Used | Paper Link | Detailed Page |
+|---|---|---|---|---|
+| **Temperature Scaling Blocks ($T$)** | Flattens probability distortions. Incorporating a high-temperature constant stretches the feature distributions, amplifying contrast between ID boundaries and anomalous noise. | 2018 | [Liang et al. (2018)](#references) | [Details](details/temperature_scaling.md) |
+| **Mahalanobis Covariance Centroids** | High-dimensional distance tracking. Caches exact mean vectors and covariance matrices of inner hidden representations to spot structural feature drift. | 2018 | N/A | [Details](details/enterprise_fraud.md) |
 
 ---
 
@@ -68,20 +68,20 @@ flowchart TB
 
 Deploying large-scale OOD detection checks across high-volume commercial cloud infrastructure networks introduces intense performance and precision trade-offs.
 
-| Challenge | The Problem & Mitigation | Year First Used | Paper Link |
-|---|---|---|---|
-| **The Latency-Overhead Wall of Deep Generative Pipelines** | *The Problem:* Deploying generative density networks doubles system latency.<br>*Mitigation:* Post-Hoc Energy or Logit-Norm Classifiers extract indices with near-zero overhead. | 2020 | [Liu et al. (2020)](#references) |
-| **The False-Positive Capacity Drain (The Alignment Tax)** | *The Problem:* Over-conservative thresholds erroneously flag valid, safe enterprise data, causing Refusal Over-generalization.<br>*Mitigation:* Multi-Task Instruction Fine-Tuning and monosemantic feature autoencoders (SAEs). | 2023 | [Bricken et al. (2023)](#references) |
+| Challenge | The Problem & Mitigation | Year First Used | Paper Link | Detailed Page |
+|---|---|---|---|---|
+| **The Latency-Overhead Wall of Deep Generative Pipelines** | *The Problem:* Deploying generative density networks doubles system latency.<br>*Mitigation:* Post-Hoc Energy or Logit-Norm Classifiers extract indices with near-zero overhead. | 2020 | [Liu et al. (2020)](#references) | [Details](details/latency_overhead_wall.md) |
+| **The False-Positive Capacity Drain (The Alignment Tax)** | *The Problem:* Over-conservative thresholds erroneously flag valid, safe enterprise data, causing Refusal Over-generalization.<br>*Mitigation:* Multi-Task Instruction Fine-Tuning and monosemantic feature autoencoders (SAEs). | 2023 | [Bricken et al. (2023)](#references) | [Details](details/false_positive_capacity_drain.md) | [Details](details/monosemantic_vlm.md) |
 
 ---
 
 ## 5. Frontier Real-World AI Industrial Applications
 
-| Application | Description | Year First Used | Paper Link |
-|---|---|---|---|
-| **Autonomous Driving Perception Fleet Defensives (BEV Perception)** | Safeguards self-driving vehicle perception against unknown road hazards. OOD core flags mapped anomalies to trigger defensive braking loops safely. | 2017 | [Hendrycks & Gimpel (2017)](#references) |
-| **Mission-Critical Clinical Pathology Diagnostic Safeguards** | Regulates medical diagnostic support. If vision encoder encounters un-represented cell mutation, OOD gate halts reporting, passing execution to clinicians. | 2021 | N/A |
-| **Enterprise Financial Fraud & Cyber-Security Intrusion Detection** | Screens millions of high-frequency cloud API transactions. If execution vector maps to high-energy outlier coordinate, security enclave flags attack instantly. | 2020 | N/A |
+| Application | Description | Year First Used | Paper Link | Detailed Page |
+|---|---|---|---|---|
+| **Autonomous Driving Perception Fleet Defensives (BEV Perception)** | Safeguards self-driving vehicle perception against unknown road hazards. OOD core flags mapped anomalies to trigger defensive braking loops safely. | 2017 | [Hendrycks & Gimpel (2017)](#references) | [Details](details/autonomous_driving.md) | [Details](details/msp_baseline.md) |
+| **Mission-Critical Clinical Pathology Diagnostic Safeguards** | Regulates medical diagnostic support. If vision encoder encounters un-represented cell mutation, OOD gate halts reporting, passing execution to clinicians. | 2021 | N/A | [Details](details/enterprise_fraud.md) |
+| **Enterprise Financial Fraud & Cyber-Security Intrusion Detection** | Screens millions of high-frequency cloud API transactions. If execution vector maps to high-energy outlier coordinate, security enclave flags attack instantly. | 2020 | N/A | [Details](details/enterprise_fraud.md) |
 
 ---
 
