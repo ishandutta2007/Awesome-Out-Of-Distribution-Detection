@@ -36,19 +36,19 @@ The technical framework governing anomalies isolation has transitioned from supe
 
 OOD Detection frameworks are strictly categorized based on the specific computing layers they analyze and the operational availability of target anomaly samples during training [INDEX: 16].
 
-	### A. Post-Hoc Score Discrimination (Model-Free Refitting)
+- ### A. Post-Hoc Score Discrimination (Model-Free Refitting)
 	*   **Mechanism:** Ingests a fully trained, frozen classification model. It intercepts the raw logit outputs ($f_i(x)$) right before the Softmax gate, computing alternative mathematical indicators (such as the Energy Score or Mahalanobis distance parameters against stored layer centroids) to evaluate boundary limits.
 	*   **Energy-Based Formula:** 
 	    $$E(x; f) = -T \cdot \ln \sum_{i=1}^{K} \exp\left(\frac{f_i(x)}{T}\right)$$
 	    Where $T$ is the temperature constant. Inputs outputting energy bounds crossing a fixed threshold are flagged as OOD.
 
-	### B. Outlier Exposure (Adversarial Data-Centric OOD)
+- ### B. Outlier Exposure (Adversarial Data-Centric OOD)
 	*   **Mechanism:** Integrates an explicit anomaly regularization penalty directly into the active training loop. The optimization matrix forces the model to read a massive, auxiliary dataset of un-related public data rows (Outlier Exposure), punishing the network during backpropagation if it outputs high-confidence predictions over those proxy anomalies.
 
-	### C. Self-Supervised Multi-Modal Anomaly Detection
+- ### C. Self-Supervised Multi-Modal Anomaly Detection
 	*   **Mechanism:** Exploits high-capacity joint-embedding foundation models (CLIP/SigLIP) [INDEX: 10]. Incoming test inputs pass through parallel image and text towers; the system checks for **Cosine Similarity Deviations** against a broad portfolio of open-vocabulary class text strings, isolating outliers zero-shot.
 
-	### D. Test-Time Compute Reasoning Auditing
+- ### D. Test-Time Compute Reasoning Auditing
 	*   **Mechanism:** Deployed inside advanced reasoning models that scale inference compute via hidden thinking traces [INDEX: 1, 18, 21]. The policy network analyzes its own intermediate validation logic chains [INDEX: 1]; if the self-correction primitives register permanent logical contradictions or un-grounded loops, the system flags the prompt query as an out-of-distribution anomaly.
 
 
